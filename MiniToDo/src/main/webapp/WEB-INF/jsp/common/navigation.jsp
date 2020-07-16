@@ -1,6 +1,6 @@
 <nav role="navigation" class="navbar navbar-default">
  <div class="">
-  <a href="http://www.javaguides.net" class="navbar-brand">Java Guides</a>
+  <a href="https://diro.io/" class="navbar-brand">Diro Labs</a>
  </div>
  <div class="navbar-collapse">
      <ul class="nav navbar-nav">

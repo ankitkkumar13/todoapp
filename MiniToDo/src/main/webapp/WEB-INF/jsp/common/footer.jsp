@@ -12,8 +12,8 @@
 <div class="footer">
     Fixed Footer
     <h1>
-        <a href="http://www.javaguides.net/p/spring-boot-tutorial.html">
-  Spring Boot Tutorial</a>
+        <a href="https://diro.io/">
+  Internet Orignal Documents</a>
     </h1>
 </div>
 </body>

@@ -21,7 +21,12 @@
        <form:errors path="password" cssClass="text-warning" />
       </fieldset>
 
+      
+      <div class="form-group">
       <button type="submit" class="btn btn-success">Sign In</button>
+      <span>Don't have an account? <a href="/signup">Sign Up
+        </a></span>
+      </div>
      </form:form>
     </div>
    </div>

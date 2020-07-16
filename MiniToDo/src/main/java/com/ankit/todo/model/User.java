@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -18,8 +22,43 @@ import org.springframework.stereotype.Component;
 @Entity
 public class User implements Serializable{
 	@Id
+	@NotEmpty(message = "Email id is required")
+	@NotNull(message = "Email id is required")
 	private String email;
+	@NotEmpty(message = "password is required")
+	@NotNull(message = "password is required")
 	private String password;
+	@NotEmpty(message = "firstname is required")
+	@NotNull(message = "firstname is required")
+	private String firstName;
+	private String lastName;
+	@OneToMany(mappedBy = "user")
+	private Set<Todo> todos=new HashSet<>();
+	
+	public Set<Todo> getTodos() {
+		return todos;
+	}
+
+	public void setTodos(Set<Todo> todos) {
+		this.todos = todos;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinTable(name = "user_authority",
 	joinColumns = {@JoinColumn(name="user_id")},

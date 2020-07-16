@@ -1,6 +1,8 @@
 package com.ankit.todo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ankit.todo.model.Todo;
+import com.ankit.todo.model.User;
 
 @Component
 public class ToDoDaoImpl implements ToDoDao {
@@ -38,10 +41,17 @@ public class ToDoDaoImpl implements ToDoDao {
 	@Override
 	public List<Todo> findByName(String name) {
 		Session session=sessionFactory.openSession();
-		Transaction transaction=session.beginTransaction();
-		Criteria criteria=session.createCriteria(Todo.class);
-		criteria.add(Restrictions.eq("userName", name));
-		return  criteria.list();
+		Criteria criteria=session.createCriteria(User.class);
+		criteria.add(Restrictions.eq("email", name));
+		List<User> list = criteria.list();
+		List<Todo> listTod=new ArrayList<Todo>();
+		if(list!=null&&!list.isEmpty()) {
+		Set<Todo>	setuser=list.get(0).getTodos();
+		setuser.stream().forEach(m->{
+			listTod.add(m);
+		});
+		}
+		  return listTod;
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("user name "+username);
 		User user=userDaoImpl.findById(username);
-		System.out.println(user.getEmail());
+//		System.out.println(user.getEmail());
 		if(user==null) {
 			throw new UsernameNotFoundException("Can't find user by this eamil");
 		}

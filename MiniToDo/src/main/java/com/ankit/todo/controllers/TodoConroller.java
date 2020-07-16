@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ankit.todo.TodoService;
 import com.ankit.todo.model.Todo;
+import com.ankit.todo.services.UserServiceImpl;
 
 @Controller
 public class TodoConroller {
 	@Autowired
 	TodoService toDoService;
+	@Autowired
+	UserServiceImpl userServiceImpl;
 	@InitBinder
 	public void binder(WebDataBinder binder) {
 		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
@@ -63,7 +66,8 @@ public class TodoConroller {
 	public String updateToDo(Model model,@Validated Todo todo,BindingResult br) {
 		if(br.hasErrors())
 			return "todo";
-		todo.setUserName(getLogedInUserName(model));
+//		todo.setUserName(getLogedInUserName(model));
+		todo.setUser(userServiceImpl.findById(getLogedInUserName(model)));
 		toDoService.update(todo);
 		return "redirect:/list-todos";
 		
@@ -73,7 +77,7 @@ public class TodoConroller {
 	public String addToDo(Model model,@Validated Todo todo,BindingResult br) {
 		if(br.hasErrors())
 			return "todo";
-		todo.setUserName(getLogedInUserName(model));
+		todo.setUser(userServiceImpl.findById(getLogedInUserName(model)));
 		toDoService.save(todo);
 		return "redirect:/list-todos";
 		

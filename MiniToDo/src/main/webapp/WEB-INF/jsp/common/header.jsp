@@ -10,6 +10,9 @@
  rel="stylesheet">
 
 <style>
+    .error{
+        color:red
+    }
 .footer {
  position: fixed;
  left: 0;
