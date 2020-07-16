@@ -22,8 +22,8 @@ public class BootStrapData implements CommandLineRunner {
 		user.setEmail("ankit@diro.io");
 		user.setPassword("$2a$10$PENWcp9NvgWY.tt5ZnU4pevZkebWbcKVefDJ/2wdra7EElUHODlyS");
 		user.getAuthorities().add(authority);
-//		authority.getUsers().add(user);
-		userDaoImpl.save(user);
+//		authority.getUsers().add(user);`
+//		userDaoImpl.save(user);
 		
 	}
 

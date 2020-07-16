@@ -14,7 +14,7 @@ import com.ankit.todo.model.User;
 
 @Controller
 public class LogoutController {
-	@RequestMapping(value="/",method=RequestMethod.GET)
+	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String showLoginForm(Model model) {
 		model.addAttribute("user",new User());
 		return "login";

@@ -5,12 +5,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ankit.todo.services.UserDetailsServiceImpl;
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public UserDetailsService userDetailsService() {
@@ -19,8 +21,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 		 http.csrf().disable().
-		 authorizeRequests().antMatchers("/","/signup","/resetpassword").permitAll().antMatchers("/*todo*/**").access("hasRole('USER')").and()
-		 .formLogin().loginPage("/").permitAll().defaultSuccessUrl("/home");
+		 authorizeRequests().antMatchers("/login","/signup","/error","/resetpassword","/webjars/","/webjars/**").permitAll().antMatchers("/**").access("hasRole('ROLE_USER')").and()
+		 .formLogin().permitAll().loginPage("/login").usernameParameter("email").passwordParameter("password").defaultSuccessUrl("/home",true).failureUrl("/error");
 	    }
 	  @Bean
 	    public BCryptPasswordEncoder passwordEncoder() {

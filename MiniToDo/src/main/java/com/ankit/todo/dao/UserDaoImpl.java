@@ -12,6 +12,7 @@ public class UserDaoImpl implements UserDao {
 	SessionFactory sessionFactory;
 	@Override
 	public User findById(String id) {
+		System.out.println("User id "+id);
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		User user = session.find(User.class, id);
