@@ -25,6 +25,7 @@ public class ToDoDaoImpl implements ToDoDao {
 		Transaction transaction = session.beginTransaction();
 		session.save(todo);
 		transaction.commit();
+		session.close();
 		return todo;
 	}
 
@@ -32,7 +33,10 @@ public class ToDoDaoImpl implements ToDoDao {
 	public Todo findById(long id) {
 		// TODO Auto-generated method stub
 		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		
 		Todo todo=(Todo) session.byId(Todo.class).load(id);
+		session.getTransaction().commit();
 		session.close();
 		return todo;
 		
@@ -41,6 +45,7 @@ public class ToDoDaoImpl implements ToDoDao {
 	@Override
 	public List<Todo> findByName(String name) {
 		Session session=sessionFactory.openSession();
+		session.beginTransaction();
 		Criteria criteria=session.createCriteria(User.class);
 		criteria.add(Restrictions.eq("email", name));
 		List<User> list = criteria.list();
@@ -51,6 +56,8 @@ public class ToDoDaoImpl implements ToDoDao {
 			listTod.add(m);
 		});
 		}
+		session.getTransaction().commit();
+		session.close();
 		  return listTod;
 	}
 

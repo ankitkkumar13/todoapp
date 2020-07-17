@@ -16,6 +16,8 @@ public class UserDaoImpl implements UserDao {
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		User user = session.find(User.class, id);
+		session.getTransaction().commit();
+		session.close();
 		return user;
 	}
 	
@@ -24,6 +26,7 @@ public class UserDaoImpl implements UserDao {
 		session.beginTransaction();
 		session.save(user);
 		session.getTransaction().commit();
+		session.close();
 		return user;
 	}
 

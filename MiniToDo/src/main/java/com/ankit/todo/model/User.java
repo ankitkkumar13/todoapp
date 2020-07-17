@@ -59,7 +59,7 @@ public class User implements Serializable{
 		this.lastName = lastName;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name = "user_authority",
 	joinColumns = {@JoinColumn(name="user_id")},
 	inverseJoinColumns = {@JoinColumn(name="authority_id")})
