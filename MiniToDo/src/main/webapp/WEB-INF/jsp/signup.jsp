@@ -5,7 +5,7 @@
    <div class="panel panel-primary">
     <div class="panel-heading">Sign in to continue</div>
     <div class="panel-body">
-     <form:form method="post" modelAttribute="user" action="/signup">
+     <form:form method="post" modelAttribute="user" action="signup">
       <%-- <form:hidden path="id" /> --%>
        <fieldset class="form-group">
        <form:label path="firstName">First name</form:label>
@@ -31,7 +31,6 @@
       
       <div class="form-group">
       <button type="submit" class="btn btn-success">Sign Up</button>
-        </a></span>
       </div>
      </form:form>
     </div>

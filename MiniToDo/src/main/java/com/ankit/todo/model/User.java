@@ -21,15 +21,16 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@NotEmpty(message = "Email id is required")
-	@NotNull(message = "Email id is required")
+	@NotBlank(message = "Email id is required")
 	private String email;
-	@NotEmpty(message = "password is required")
-	@NotNull(message = "password is required")
+	@NotBlank(message = "password is required")
 	private String password;
-	@NotEmpty(message = "firstname is required")
-	@NotNull(message = "firstname is required")
+	@NotBlank(message = "firstname is required")
 	private String firstName;
 	private String lastName;
 	@OneToMany(mappedBy = "user")

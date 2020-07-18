@@ -9,9 +9,8 @@
       <%-- <form:hidden path="id" /> --%>
       <fieldset class="form-group">
        <form:label path="email">Email</form:label>
-       <form:input path="email" type="text" class="form-control"
-        required="required" />
-       <form:errors path="email" cssClass="text-warning" />
+       <form:input path="email" type="text" class="form-control"/>
+       <form:errors path="email" cssClass="text-danger" />
       </fieldset>
 
       <fieldset class="form-group">
